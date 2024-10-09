@@ -1,0 +1,31 @@
+<div class="dialog">
+  <div class="header">
+    <div class="title">Configurar Banner</div>
+    <div class="close" (click)="closeDialog()">&times;</div>
+  </div>
+
+  <div class="config" *ngIf="selectedBanner">
+    <div class="input">
+      <p>Endereço da imagem:</p>
+      <div>
+        <input type="text" [(ngModel)]="selectedBanner.img" />
+      </div>
+    </div>
+
+    <div class="input">
+      <p>Redireciona para:</p>
+      <div>
+        <input type="text" [(ngModel)]="selectedBanner.url" />
+      </div>
+    </div>
+
+    <div>
+      <img class="banner" [src]="selectedBanner.img" />
+    </div>
+  </div>
+
+  <div class="btn">
+    <button class="close" (click)="closeDialog()">Fechar</button>
+    <button class="save" (click)="saveChanges()">Salvar</button>
+  </div>
+</div>

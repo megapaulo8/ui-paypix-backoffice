@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="content--wrapper">
+        <p class="title">{{ alert.title }}</p>
+        <p class="question">{{ alert.question }}</p>
+    </div>
+    <div class="answer--container">
+        <button (click)="dialogRef.close(false)"><p>Cancelar</p></button>
+        <button (click)="dialogRef.close(true)"><p>OK</p></button>
+    </div>
+</div>

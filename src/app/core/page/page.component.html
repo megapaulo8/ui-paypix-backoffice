@@ -1,0 +1,4 @@
+<app-menu [menu]="menuLayout" [userInfo]="userInfo" [currentPath]="currentPath" (pathTo)="changeRouteTo($event)" (clickUserLogout)="userLogout()"></app-menu>
+<div class="content--wrapper">
+    <router-outlet></router-outlet>
+</div>

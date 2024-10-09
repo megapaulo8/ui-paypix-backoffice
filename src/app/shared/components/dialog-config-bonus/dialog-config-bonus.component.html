@@ -1,0 +1,13 @@
+<div class="dialog">
+  <div class="title">Configuraração de Bônus: {{ bonusData.bonus_name }}</div>
+  <input
+    type="text"
+    [(ngModel)]="bonusData.bonus_amount"
+    mask="percent"
+    suffix="%"
+  />
+  <div class="btn">
+    <button class="close" class="close" (click)="closeDialog()">Fechar</button>
+    <button class="save" class="save" (click)="saveConfig()">Salvar</button>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="chart">
+  <div class="overlay left"></div>
+  <div class="overlay right"></div>
+  <h3>Novos usuários cadastrados</h3>
+  <p>Na última semana</p>
+  <canvas
+    baseChart
+    [type]="'line'"
+    [data]="NewUsersData"
+    [options]="lineChartOptions"
+    [legend]="lineChartLegend"
+  >
+  </canvas>
+</div>

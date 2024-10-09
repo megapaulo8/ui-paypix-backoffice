@@ -1,0 +1,9 @@
+<mat-form-field>
+  <mat-label>Filtro</mat-label>
+  <mat-date-range-input [rangePicker]="picker">
+    <input matStartDate [(ngModel)]="startDate" (ngModelChange)="emitDateRange()">
+    <input matEndDate [(ngModel)]="endDate" [ngModel]="endDate" (ngModelChange)="emitDateRange()">
+  </mat-date-range-input>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+</mat-form-field>

@@ -1,0 +1,120 @@
+.container {
+    border-radius: 20px;
+    background: #171717;
+    padding: 2rem 30px;
+
+    .header--container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .type--account {
+            margin: 0;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .buttons--wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+
+            app-default-button {
+                ::ng-deep button {
+                    background: #2E2E2E;
+                    font-weight: bold;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+
+        
+    .content--wrapper {
+        display: flex;
+        margin: 1.5rem 0 1rem 0;
+        flex-direction: column;
+
+        .name--info-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+    
+            .title {
+                font-size: 1.2rem;
+                margin: 0;
+                color: white;
+                font-weight: bold;
+            }
+
+            .row {
+                display: flex;
+                padding-left: 1rem;
+                flex-direction: row;
+                align-items: center;
+    
+                .circle--dot {
+                    width: 0.8rem;
+                    height: 0.8rem;
+                    border-radius: 50%;
+                    background: white;
+                    margin-right: 0.6rem;
+                }
+    
+                p {
+                    margin: 0;
+                    color: white;
+                    font-size: 1.2rem;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        .user--info-container {
+            display: grid;
+            margin-top: 2rem;
+            gap: 2rem;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+            .user--info {
+                display: flex;
+                flex-direction: column;
+
+                &:last-child {
+                    p {
+                        &:last-child {
+                            cursor: pointer;
+                            transition: all 0.3s ease-in-out;
+
+                            &:hover {
+                                color: var(--color-primary);
+                                transition: all 0.3s ease-in-out;
+                            }
+                        }
+
+                    }
+                }
+                    
+                p {
+                    margin: 0;
+                    font-size: 1rem;
+                    color: white;
+                    
+                    &.email--ellipsis {
+                        max-width: 14rem;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }   
+
+                    &:first-child {
+                        opacity: 0.5;
+                        font-weight: 700;
+                        margin-bottom: 0.2rem;
+                    }
+                }
+            }
+        }
+    }
+}

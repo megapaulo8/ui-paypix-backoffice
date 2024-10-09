@@ -1,0 +1,45 @@
+<div class="header">
+  <h2>Banner</h2>
+</div>
+<main>
+  <div class="banners">
+    <p>Configure o banner que será mostrado</p>
+
+    <ng-container *ngFor="let site of siteData">
+      <ng-container *ngFor="let banner of site.banners">
+        <div class="active" (click)="openBannerDialog(banner)">
+          <img [src]="banner.img" />
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngFor="let _ of getNewContainerRepeatCount()">
+      <div class="new" (click)="openBannerDialog()">+</div>
+    </ng-container>
+  </div>
+
+  <div class="paypix">
+    <div class="banner-site">
+      <img src="https://i.imgur.com/sxyJSmw.png" />
+    </div>
+    <div class="website-config">
+      <ng-container *ngFor="let site of siteData">
+        <div class="logo">
+          <h2>Logo</h2>
+          <p>Seção para configuração do visual da sua home</p>
+          <div class="items" (click)="openSiteConfigDialog()">
+            <img [src]="site.logo" alt="Logo" />
+          </div>
+        </div>
+
+        <div class="favicon">
+          <h2>Favicon</h2>
+          <p>Configure o ícone que será mostrado na aba do navegador</p>
+          <div class="items" (click)="openSiteConfigDialog()">
+            <img [src]="site.favicon" alt="Favicon" />
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</main>

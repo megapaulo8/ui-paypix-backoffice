@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="header">
+    <div class="title">Configure sistemas de Trackeamento e Pixels</div>
+    <button class="save" (click)="saveChanges()">Salvar</button>
+  </div>
+  <hr />
+  <div class="check">
+    <div class="text">
+      {{
+        trackingData[0].tracking_config.tracking_enabled
+          ? "Todos ativados"
+          : "Todos desativados"
+      }}
+    </div>
+    <label class="switch">
+      <input
+        type="checkbox"
+        [(ngModel)]="trackingData[0].tracking_config.tracking_enabled"
+      />
+      <span class="slider"></span>
+    </label>
+  </div>
+</div>
+
+<div class="trackingList">
+  <ng-container
+    *ngFor="
+      let track of trackingData[0].tracking_config.tracking_list;
+      let i = index
+    "
+  >
+    <div class="tracking-box">
+      <div class="header">
+        <div class="title">
+          {{ track.track_name }}
+        </div>
+        <div class="status">
+          <div
+            [ngClass]="{
+              active: trackingData[0].tracking_config.tracking_enabled,
+              disable: !trackingData[0].tracking_config.tracking_enabled
+            }"
+          ></div>
+          <span>{{ trackingData[0].tracking_config.tracking_enabled ? "Ativo" : "Inativo" }}</span>
+        </div>
+      </div>
+      <main>
+        <div><img [src]="track.track_logo" /></div>
+        <div>
+          {{ track.track_description }}
+        </div>
+      </main>
+      <div class="btn">
+        <button (click)="openDialog(i)">Configurar</button>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<br />

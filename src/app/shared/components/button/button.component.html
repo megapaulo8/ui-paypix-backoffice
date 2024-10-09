@@ -1,0 +1,6 @@
+<ng-container *ngIf="button.pathTo; else defaultButton">
+    <button [class]="class" [ngClass]="{ 'btn-color-primary': button.type === 'neon' }" (click)="pathTo.emit(button.pathTo)">{{ button.text }}</button>
+</ng-container>
+<ng-template #defaultButton>
+    <button [class]="class" [ngClass]="{ 'btn-color-primary': button.type === 'neon' }" (click)="clicked.emit()">{{ button.text }}</button>
+</ng-template>

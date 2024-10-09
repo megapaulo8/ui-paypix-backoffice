@@ -1,0 +1,86 @@
+<div class="card-container">
+  <div class="card">
+    <div class="inner-card">
+      <div class="overlay left"></div>
+      <div class="overlay right"></div>
+
+      <div class="icon">
+        <img src="https://bugdocasino.com/assets/icon-affiliate.png" />
+      </div>
+      <header>
+        <div class="titulo">Volume de depósitos</div>
+        <div class="valor">{{ volumeDeposits | currency : "BRL" }}</div>
+        <div class="subtitulo" *ngIf="isToday(endDate) && !isFilteredByDate()">Hoje</div>
+        <div class="subtitulo" *ngIf="isToday(lastDate) && !isFilteredByDate() && isToday(lastDate) !== isToday(endDate)">
+          Até hoje
+        </div>
+        <div
+          class="subtitulo"
+          *ngIf="!isToday(lastDate) && !isFilteredByDate() && selectedStatus"
+        >
+          Até {{ lastDate | date : "dd/MM/yyyy" }}
+        </div>
+        <div class="subtitulo" *ngIf="isFilteredByDate()">
+          De {{ startDate | date : "dd/MM/yyyy" }} a
+          {{ endDate | date : "dd/MM/yyyy" }}
+        </div>
+      </header>
+    </div>
+  </div>
+  <div class="card">
+    <div class="inner-card">
+      <div class="overlay left"></div>
+      <div class="overlay right"></div>
+
+      <div class="icon">
+        <img src="https://bugdocasino.com/assets/icon-affiliate.png" />
+      </div>
+      <header>
+        <div class="titulo">Quantidade de depósitos</div>
+        <div class="valor">{{ quantityDeposits }}</div>
+        <div class="subtitulo" *ngIf="isToday(endDate) && !isFilteredByDate()">Hoje</div>
+        <div class="subtitulo" *ngIf="isToday(lastDate) && !isFilteredByDate() && isToday(lastDate) !== isToday(endDate)">
+          Até hoje
+        </div>
+        <div
+          class="subtitulo"
+          *ngIf="!isToday(lastDate) && !isFilteredByDate()"
+        >
+          Até {{ lastDate | date : "dd/MM/yyyy" }}
+        </div>
+        <div class="subtitulo" *ngIf="isFilteredByDate()">
+          De {{ startDate | date : "dd/MM/yyyy" }} a
+          {{ endDate | date : "dd/MM/yyyy" }}
+        </div>
+      </header>
+    </div>
+  </div>
+  <div class="card">
+    <div class="inner-card">
+      <div class="overlay left"></div>
+      <div class="overlay right"></div>
+
+      <div class="icon">
+        <img src="https://bugdocasino.com/assets/icon-affiliate.png" />
+      </div>
+      <header>
+        <div class="titulo">Ticket médio</div>
+        <div class="valor">{{ averageTicket | currency : "BRL" }}</div>
+        <div class="subtitulo" *ngIf="isToday(endDate) && !isFilteredByDate()">Hoje</div>
+        <div class="subtitulo" *ngIf="isToday(lastDate) && !isFilteredByDate() && isToday(lastDate) !== isToday(endDate)">
+          Até hoje
+        </div>
+        <div
+          class="subtitulo"
+          *ngIf="!isToday(lastDate) && !isFilteredByDate() && selectedStatus"
+        >
+          Até {{ lastDate | date : "dd/MM/yyyy" }}
+        </div>
+        <div class="subtitulo" *ngIf="isFilteredByDate()">
+          De {{ startDate | date : "dd/MM/yyyy" }} a
+          {{ endDate | date : "dd/MM/yyyy" }}
+        </div>   
+      </header>
+    </div>
+  </div>
+</div>

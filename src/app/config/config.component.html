@@ -1,0 +1,70 @@
+<div class="header">
+  <h2>Configurações</h2>
+</div>
+
+<div class="menu">
+  <div class="item" [class.active]="currentConfig === 'banner'">
+    <a (click)="setCurrentConfig('banner')">Logo</a>
+  </div>
+  <div class="item" [class.active]="currentConfig === 'deposit'">
+    <a (click)="setCurrentConfig('deposit')">Depósitos</a>
+  </div>
+  <div class="item" [class.active]="currentConfig === 'withdraw'">
+    <a (click)="setCurrentConfig('withdraw')">Saques</a>
+  </div>
+  <div class="item" [class.active]="currentConfig === 'bonus'">
+    <a (click)="setCurrentConfig('bonus')">Bônus</a>
+  </div>
+  <div class="item" [class.active]="currentConfig === 'indication'">
+    <a (click)="setCurrentConfig('indication')">Sistema de indicação</a>
+  </div>
+  <div class="item" [class.active]="currentConfig === 'support'">
+    <a (click)="setCurrentConfig('support')">Suporte ao Jogador</a>
+  </div>
+  <div class="item" [class.active]="currentConfig === 'tracking'">
+    <a (click)="setCurrentConfig('tracking')">Tracking & Pixels</a>
+  </div>
+</div>
+
+<div *ngIf="currentConfig === 'banner'">
+  <app-config-banner
+    [siteData]="siteData"
+    (siteDataUpdated)="saveConfigSite($event)"
+  ></app-config-banner>
+</div>
+<div *ngIf="currentConfig === 'deposit'">
+  <app-config-deposit
+    [siteData]="siteData"
+    (saveDepositConfig)="saveDepositConfig($event)"
+  ></app-config-deposit>
+</div>
+<div *ngIf="currentConfig === 'withdraw'">
+  <app-config-withdraw
+    [siteData]="siteData"
+    (saveWithdrawConfig)="saveWithdrawConfig($event)"
+  ></app-config-withdraw>
+</div>
+<div *ngIf="currentConfig === 'bonus'">
+  <app-config-bonus
+    [siteData]="siteData"
+    (saveBonusConfig)="saveBonusConfig($event)"
+  ></app-config-bonus>
+</div>
+<div *ngIf="currentConfig === 'indication'">
+  <app-config-indication
+    [siteData]="siteData"
+    (saveConfigIndication)="saveConfigIndication($event)"
+  ></app-config-indication>
+</div>
+<div *ngIf="currentConfig === 'support'">
+  <app-config-support
+    [supportConfig]="siteData"
+    (saveSupportConfig)="saveSupportConfig($event)"
+  ></app-config-support>
+</div>
+<div *ngIf="currentConfig === 'tracking'">
+  <app-config-tracking-pixels
+  [trackingData]="siteData"
+  (saveTrackingData)="saveTrackingConfig($event)"
+  ></app-config-tracking-pixels>
+</div>

@@ -1,0 +1,37 @@
+<div
+  class="card-container"
+  *ngIf="dashboardData && dashboardData.dashboard.cards.length > 0"
+>
+  <div class="card" *ngFor="let card of dashboardData.dashboard.cards">
+    <div class="inner-card">
+      <div class="overlay left"></div>
+      <div class="overlay right"></div>
+
+      <div class="icon">
+        <img [src]="card.iconUrl" />
+      </div>
+      <header *ngIf="card.title || card.value">
+        <div class="ganhos">
+          <div class="titulo" *ngIf="card.title">{{ card.title }}</div>
+          <div class="valor" *ngIf="card.value">
+            {{ card.value | currency : "BRL" }}
+          </div>
+          <div class="subtitulo">
+            {{ card.rangedDate[0] | date : "dd/MM/yyyy" }}
+          </div>
+        </div>
+      </header>
+
+      <div *ngIf="card.title.length > 0 && card.cardsInfo.length > 0">
+        <div class="separate">&nbsp;</div>
+      </div>
+
+      <section class="detalhes">
+        <div class="item" *ngFor="let info of card.cardsInfo">
+          <p>{{ info.text }}</p>
+          <p>{{ info.value | currency : "BRL" }}</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

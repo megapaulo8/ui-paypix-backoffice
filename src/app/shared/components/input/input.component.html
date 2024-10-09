@@ -1,0 +1,21 @@
+<div class="container">
+    <ng-container *ngIf="hasCurrencyMask; else inputWithNoCurrencyMask">
+        <input [disabled]="disabled" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }" [type]="type" [placeholder]="placeholder" [(ngModel)]="value" (ngModelChange)="typing.emit($event)">
+        <i [class]="iconName"></i>
+    </ng-container>
+    <ng-template #inputWithNoCurrencyMask>
+        <ng-container *ngIf="mask; else inputWithNoMask">
+            <input [disabled]="disabled" [type]="type" [placeholder]="placeholder" [mask]="mask" [(ngModel)]="value" (ngModelChange)="typing.emit($event)">
+            <i [class]="iconName"></i>
+        </ng-container>
+        <ng-template #inputWithNoMask>
+            <ng-container *ngIf="iconName; else inputWithoutIcon">
+                <input [disabled]="disabled" [type]="type" [placeholder]="placeholder" [(ngModel)]="value" (ngModelChange)="typing.emit($event)">
+                <i [class]="iconName"></i>
+            </ng-container>
+            <ng-template #inputWithoutIcon>
+                <input [disabled]="disabled" [ngStyle]="{'padding-left': '16px'}" [type]="type" [placeholder]="placeholder" [(ngModel)]="value" (ngModelChange)="typing.emit($event)">
+            </ng-template>
+        </ng-template>
+    </ng-template>
+</div>

@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="header">
+    <h2>Bônus</h2>
+    <button class="save" (click)="saveBonus()">Salvar</button>
+  </div>
+
+  <hr />
+
+  <div class="check">
+    <div class="text">O sistema de bônus da casa está</div>
+    <div
+      class="status"
+      [style.color]="
+        siteData[0].bonus_config.houseBonusSystemEnabled
+          ? 'var(--color-primary)'
+          : 'red'
+      "
+    >
+      [
+      {{
+        siteData[0].bonus_config.houseBonusSystemEnabled
+          ? "Ativado"
+          : "Desativado"
+      }}
+      ]
+    </div>
+
+    <label class="switch">
+      <input
+        type="checkbox"
+        [(ngModel)]="siteData[0].bonus_config.houseBonusSystemEnabled"
+      />
+      <span class="slider"></span>
+    </label>
+  </div>
+  <div class="check">
+    <div class="text">Pegar todas as rodadas grátis com bônus</div>
+    <div
+      class="status"
+      [style.color]="
+        siteData[0].bonus_config.allFreeRoundsWithBonusEnabled
+          ? 'var(--color-primary)'
+          : 'red'
+      "
+    >
+      [
+      {{
+        siteData[0].bonus_config.allFreeRoundsWithBonusEnabled
+          ? "Ativado"
+          : "Desativado"
+      }}
+      ]
+    </div>
+
+    <label class="switch">
+      <input
+        type="checkbox"
+        [(ngModel)]="siteData[0].bonus_config.allFreeRoundsWithBonusEnabled"
+      />
+      <span class="slider"></span>
+    </label>
+  </div>
+</div>
+
+<div class="bonus-list">
+  <div
+    class="list-box"
+    *ngFor="let bonusList of siteData[0].bonus_config.bonus_list"
+  >
+    <div class="header">
+      <div class="title">{{ bonusList.bonus_name }}</div>
+      <div class="status">
+        <div
+          [ngClass]="{
+            active: bonusList.bonus_status,
+            disable: !bonusList.bonus_status
+          }"
+        ></div>
+        <span>{{ bonusList.bonus_status ? "Ativo" : "Inativo" }}</span>
+      </div>
+    </div>
+    <div class="content">{{ bonusList.bonus_description }}</div>
+    <button class="config" (click)="openDialog(bonusList.bonus_id-1)" >Configurar</button>
+  </div>
+</div>

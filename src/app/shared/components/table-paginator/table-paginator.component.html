@@ -1,0 +1,3 @@
+<div class="container" [ngStyle]="{'grid-template-columns': calculateGridTemplateColumns(filter.itemsPerPage)}">
+    <button (click)="changePagination(paginationButton, index)" [class.selected]="filter.page === paginationButton" *ngFor="let paginationButton of paginationButtons; let index = index;">{{ paginationButton + 1 }}</button>
+</div>

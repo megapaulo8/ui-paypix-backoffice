@@ -1,0 +1,14 @@
+<div class="chart">
+  <div class="overlay left"></div>
+  <div class="overlay right"></div>
+  <h3>Usuários ativos</h3>
+  <p>Na última semana</p>
+  <canvas
+    baseChart
+    [type]="'bar'"
+    [data]="activeUsersData"
+    [options]="barChartOptions"
+    [legend]="barChartLegend"
+  >
+  </canvas>
+</div>

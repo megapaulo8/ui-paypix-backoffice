@@ -1,0 +1,6 @@
+<div class="container">
+    <button (click)="openOptionsMenu()"><p>{{ selectedOption.text }}</p> <img [src]="select.iconUrl"/></button>
+    <div class="options--container" #optionsContainer *ngIf="select.options">
+        <button *ngFor="let option of select.options" (click)="optionMenuSelected(option)">{{ option.text }}</button>
+    </div>
+</div>

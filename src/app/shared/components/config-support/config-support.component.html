@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="header">
+    <div class="title">Configure sistemas de suporte ao usuário</div>
+    <button (click)="saveChanges()">Salvar</button>
+  </div>
+  <hr />
+
+  <div class="check">
+    <div class="text">
+      {{
+        supportConfig[0].support_config.support_enabled
+          ? "Todos ativados"
+          : "Todos desativados"
+      }}
+    </div>
+    <label class="switch">
+      <input
+        type="checkbox"
+        [(ngModel)]="supportConfig[0].support_config.support_enabled"
+      />
+      <span class="slider"></span>
+    </label>
+  </div>
+</div>
+
+<div class="supportList">
+  <div class="supportContainer">
+    <div class="header">
+      <div class="title">Configuração de script</div>
+      <div class="status">
+        <div [ngClass]="{
+          active: supportConfig[0].support_config.support_enabled,
+          disable: !supportConfig[0].support_config.support_enabled
+        }"></div>
+        <span>{{ supportConfig[0].support_config.support_enabled ? 'Ativo' : 'Inativo' }}</span>
+      </div>
+    </div>
+    <main>
+      <p>Atendimento Online</p>
+    </main>
+    <div class="btn">
+      <button (click)="openDialog()">Configurar</button>
+    </div>
+  </div>
+</div>

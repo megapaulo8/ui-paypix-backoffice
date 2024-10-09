@@ -1,0 +1,32 @@
+<div class="dialog">
+  <div class="header">
+    <div class="title">{{ trackingData.track_name }}</div>
+    <div class="close" (click)="closeDialog()">&times;</div>
+  </div>
+
+  <main>
+    <div class="inputs">
+      <div>
+        <p>Nome</p>
+        <input type="text" [(ngModel)]="trackingData.track_name">
+      </div>
+      <div>
+        <p>Logo</p>
+        <input type="text" [(ngModel)]="trackingData.track_logo">
+      </div>
+      <div>
+        <p>Descrição</p>
+        <textarea [(ngModel)]="trackingData.track_description" rows="5"></textarea>
+      </div>
+      <div>
+        <p>Incorporar</p>
+        <textarea [(ngModel)]="trackingData.track_embed" rows="5"></textarea>
+      </div>
+    </div>
+  </main>
+
+  <div class="btn">
+    <button class="close" (click)="closeDialog()">Fechar</button>
+    <button class="save" (click)="saveDialog()">Salvar</button>
+  </div>
+</div>

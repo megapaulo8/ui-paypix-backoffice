@@ -1,0 +1,29 @@
+::ng-deep {
+    .dialog--block-user {
+       .mat-mdc-dialog-surface {
+           background: none !important;
+           border-radius: 22px !important;
+       }
+   }
+
+    .dialog--change-user-to-admin {
+       .mat-mdc-dialog-surface {
+           background: none !important;
+           border-radius: 22px !important;
+       }
+   }
+
+    .dialog--change-info-user {
+       .mat-mdc-dialog-surface {
+           background: none !important;
+           border-radius: 22px !important;
+       }
+   }
+
+    .dialog--settings-user {
+       .mat-mdc-dialog-surface {
+           background: none !important;
+           border-radius: 12px !important;
+       }
+   }
+}

@@ -1,0 +1,19 @@
+app-menu {
+    height: 100vh;
+    display: flex;
+    position: fixed;
+    overflow-y: auto;
+    flex-direction: column;
+
+    ::ng-deep .container {
+        height: 100%;
+    }
+}
+
+.content--wrapper {
+    left: 320px;
+    position: relative;
+    padding: 54px 0 0 0;
+    width: calc(97% - 320px);
+    overscroll-behavior: none;
+}

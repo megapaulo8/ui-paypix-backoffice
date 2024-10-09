@@ -1,0 +1,41 @@
+<table cellspacing="0">
+    <thead>
+        <tr>
+            <th [style.padding-left]="header.text === 'Status' ? '1rem' : ''" *ngFor="let header of headerTable">{{ header.text }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of columnUsersTable.items">
+            <td class="column">
+                <p>{{ user.username }}</p>
+                <p>{{ user.email }}</p>
+            </td>
+            <td class="column">
+                <p>CPF</p>
+                <p>{{ user.document }}</p>
+            </td>
+            <td class="account--button">
+                <app-default-button [text]="user.role === 'admin' ? 'Administrador(a)' : user.isAffiliate ? 'Afiliado(a)' : user.isSubAffiliate ? 'Subafiliado(a)' : user.isDemo ? 'Demo' : 'Jogador(a)'"></app-default-button>
+            </td>
+            <td>
+                <div class="row">
+                    <div class="circle--dot" [style.background-color]="user.active ? '#17E383' : '#FF9548'"></div>
+                    <p [style.color]="user.active ? '#17E383' : '#FF9548'">{{ user.active ? 'Normal' : 'Bloqueado' }}</p>
+                </div>
+                <div class="row" *ngIf="user.isInviter || user.invitedBy">
+                    <div class="circle--dot" [style.background-color]="user.isInviter ? '#FF4291' : '#00D1FF'"></div>
+                    <p [style.color]="user.isInviter ? '#FF4291' : '#00D1FF'">{{ user.isInviter ? 'Convidador' : user.invitedBy ? 'Convidado' : '' }}</p>
+                </div>
+            </td>
+            <td>
+                <app-default-button [text]="'Ver usuário'" (clicked)="clickedEventDefaultButton.emit({user, action: 'Ver usuário'})"></app-default-button>
+            </td>
+            <td>
+                <app-default-button [text]="user.active ? 'Bloquear usuário' : 'Desbloquear usuário'" (clicked)="clickedEventDefaultButton.emit({user, action: user.active ? 'Bloquear usuário' : 'Desbloquear usuário'})"></app-default-button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="footer">
+    <app-table-paginator (changePage)="changePage.emit($event)" [filter]="filter"></app-table-paginator>
+</div>

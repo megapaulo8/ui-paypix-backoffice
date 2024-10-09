@@ -1,0 +1,31 @@
+<div class="home-header">
+  <div>
+    <h1>Início | Dashboard</h1>
+  </div>
+  <div>
+    <app-card-filter-button
+      (dateRangeSelected)="handleDateRangeSelected($event)"
+    ></app-card-filter-button>
+  </div>
+</div>
+
+<app-home-card
+  [dashboardData]="{ dashboard: { cards: filteredCards } }"
+></app-home-card>
+
+<div class="home-header">
+  <div>
+    <h1>Início | Gráfico</h1>
+  </div>
+</div>
+
+<div class="home-charts">
+  <div>
+    <app-new-users-chart [NewUsersData]="NewUsersData"></app-new-users-chart>
+  </div>
+  <div>
+    <app-active-users-chart
+      [activeUsersData]="activeUsersData"
+    ></app-active-users-chart>
+  </div>
+</div>

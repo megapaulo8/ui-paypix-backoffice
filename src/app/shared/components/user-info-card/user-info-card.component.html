@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="header--container">
+        <p class="type--account">{{ user.role === 'admin' ? 'Administrador(a)' : user.isAffiliate ? 'Afiliado(a)' : user.isSubAffiliate ? 'Subafiliado(a)' : 'Jogador(a)' }}</p>
+        <div class="buttons--wrapper">
+            <app-default-button [text]="'Configurações'" (clicked)="clickedEventDefaultButton.emit({user, action: 'Configurações'})"></app-default-button>
+            <app-default-button [text]="user.active ? 'Bloquear usuário' : 'Desbloquear usuário'" (clicked)="clickedEventDefaultButton.emit({user, action: user.active ? 'Bloquear usuário' : 'Desbloquear usuário'})"></app-default-button>
+        </div>
+    </div>
+    <div class="content--wrapper">
+        <div class="name--info-container">
+            <p class="title">{{ user.username }}</p>
+            <div class="row" *ngIf="user.isInviter || user.invitedBy">
+                <div class="circle--dot" [style.background-color]="user.isInviter ? '#FF4291' : '#00D1FF'"></div>
+                <p [style.color]="user.isInviter ? '#FF4291' : '#00D1FF'">{{ user.isInviter ? 'Convidador' : user.invitedBy ? 'Convidado' : '' }}</p>
+            </div>
+            <div class="row">
+                <div class="circle--dot" [style.background-color]="user.active ? '#17E383' : '#FF9548'"></div>
+                <p [style.color]="user.active ? '#17E383' : '#FF9548'">{{ user.active ? 'Normal' : 'Bloqueado' }}</p>
+            </div>
+        </div>
+        <div class="user--info-container">
+            <div class="user--info">
+                <p>E-mail</p>
+                <p class="email--ellipsis">{{ user.email }}</p>
+            </div>
+            <div class="user--info">
+                <p>Documento</p>
+                <p>{{ formatDocumentToBrazilianDocument(user.document) }}</p>
+            </div>
+            <div class="user--info">
+                <p>Criado em</p>
+                <p>{{ user.createdDate | date:'dd-MM-yyyy' }}</p>
+            </div>
+            <div class="user--info">
+                <p>Telefone</p>
+                <p>{{ user.phone }}</p>
+            </div>
+            <div class="user--info">
+                <p>Indicado por</p>
+                <p [matTooltip]="'Acessar perfil de ' + user.indicatedBy?.username" *ngIf="user?.indicatedBy" class="email--ellipsis" (click)="redirectTo.emit('/logged/user/' + user.indicatedBy?._id)">{{ user.indicatedBy?.email }}</p>
+            </div>
+        </div>
+    </div>
+</div>

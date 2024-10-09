@@ -1,0 +1,128 @@
+<table cellspacing="0">
+  <thead>
+    <tr>
+      <th>Usuário</th>
+      <th>GGR</th>
+      <th>Valor</th>
+      <th>Tipo de conta</th>
+      <th>Ações</th>
+      <th>Data</th>
+      <th class="center">Ver mais</th>
+      <th class="center">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container
+      *ngFor="let singleWithdraw of filteredWithdraw; let i = index"
+    >
+      <tr>
+        <td class="column">
+          <p>{{ singleWithdraw.name }}</p>
+          <p>{{ singleWithdraw.email }}</p>
+        </td>
+        <td class="column">
+          <p *ngIf="singleWithdraw.ggr > 0">
+            <span class="green">{{
+              singleWithdraw.ggr | currency : "BRL"
+            }}</span>
+          </p>
+          <p *ngIf="singleWithdraw.ggr < 0">
+            <span class="red">{{ singleWithdraw.ggr | currency : "BRL" }}</span>
+          </p>
+          <p *ngIf="singleWithdraw.ggr === 0">
+            {{ singleWithdraw.ggr | currency : "BRL" }}
+          </p>
+        </td>
+        <td class="column">
+          <p>{{ singleWithdraw.value | currency : "BRL" }}</p>
+        </td>
+        <td class="column">
+          <div class="account-type">
+            {{ mapAccountType(singleWithdraw.account_type) }}
+          </div>
+        </td>
+        <td class="column">
+          <div class="select-container">
+            <select class="select-box">
+              <option selected>Ver ações</option>
+              <option>Pagar</option>
+              <option>Estornar</option>
+            </select>
+          </div>
+        </td>
+        <td class="column">
+          <p>{{ singleWithdraw.date | date : "dd/MM/yyyy HH:mm:ss z" }}</p>
+        </td>
+        <td class="column center" (click)="toggleExpand(i)">
+          <p>
+            <i
+              class="fa-solid arrow"
+              [ngClass]="{
+                'fa-square-caret-down': !expandedRows[i],
+                'fa-square-caret-up': expandedRows[i]
+              }"
+            ></i>
+          </p>
+        </td>
+
+        <td class="column center">
+          <p *ngIf="singleWithdraw.status === 'pago'">
+            <span class="green">
+              {{
+                singleWithdraw.status.charAt(0).toUpperCase() +
+                  singleWithdraw.status.slice(1)
+              }}
+            </span>
+          </p>
+          <p *ngIf="singleWithdraw.status === 'pendente' || singleWithdraw.status === 'cancelado'">
+            <span class="red">
+              {{
+                singleWithdraw.status.charAt(0).toUpperCase() +
+                  singleWithdraw.status.slice(1)
+              }}
+            </span>
+          </p>
+        </td>
+      </tr>
+      <tr *ngIf="expandedRows[i]" class="expandedRow">
+        <td
+          class="column"
+          [attr.colspan]="
+            singleWithdraw.key === '' && singleWithdraw.u_key === '' ? 8 : 2
+          "
+        >
+          <p>
+            <span class="expanded">Método</span>
+          </p>
+          <p>{{ singleWithdraw.method }}</p>
+        </td>
+        <td
+          class="column"
+          *ngIf="singleWithdraw.key !== ''"
+          [attr.colspan]="singleWithdraw.u_key !== '' ? 2 : 4"
+        >
+          <p>
+            <span class="expanded">Tipo de Chave</span>
+          </p>
+          <p>{{ singleWithdraw.key }}</p>
+        </td>
+        <td
+          class="column"
+          *ngIf="singleWithdraw.u_key !== ''"
+          [attr.colspan]="singleWithdraw.key !== '' ? 4 : 2"
+        >
+          <p>
+            <span class="expanded">Chave Utilizada</span>
+          </p>
+          <p>{{ singleWithdraw.u_key }}</p>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+<div class="footer">
+  <app-table-paginator
+    (changePage)="changePage.emit($event)"
+    [filter]="filter"
+  ></app-table-paginator>
+</div>

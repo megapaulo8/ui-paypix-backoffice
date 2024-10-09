@@ -1,0 +1,100 @@
+:host {
+    .header {
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: normal;
+            font-style: normal;
+            margin: 0;
+            color: white;
+        }
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1rem;
+
+        app-users-table {
+            z-index: 1;
+
+            ::ng-deep .account--button {
+                width: auto;
+                padding-right: 0 !important;
+                max-width: none !important;
+
+                app-default-button {
+                    
+                    button {
+                        width: fit-content;
+                    }
+                }
+            }
+        }
+
+        .filter--container {
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+            gap: 1rem;
+            width: 100%;
+            margin: 24px 0;
+
+            ::ng-deep .button--type-account .container button p {
+                width: 3rem;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .export--users {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                outline: none;
+                border: none;
+                border-radius: 50px;
+                background: var(--color-primary);
+                width: 48px;
+                height: 48px;
+                transition: all ease-in-out 0.3s;
+                
+                img {
+                    width: 20px;
+                    height: 20px;
+                }
+                
+                &:hover {
+                    opacity: 0.7 !important;
+                    transition: all ease-in-out 0.3s;
+                }
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .dialog--block-user {
+       .mat-mdc-dialog-surface {
+           background: none !important;
+           border-radius: 22px !important;
+       }
+   }
+
+    .dialog--create-demo-account {
+       .mat-mdc-dialog-surface {
+           background: none !important;
+       }
+   }
+
+    .dialog--exported-users {
+       .mat-mdc-dialog-surface {
+           background: none !important;
+       }
+   }
+}

@@ -1,0 +1,6 @@
+<ng-container *ngIf="iconUrl; else defaultButton">
+    <button (click)="clicked.emit()"><p>{{ text }}</p> <img [src]="iconUrl" /></button>
+</ng-container>
+<ng-template #defaultButton>
+    <button (click)="clicked.emit()"><p>{{ text }}</p></button>
+</ng-template>

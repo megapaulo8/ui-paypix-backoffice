@@ -1,0 +1,148 @@
+.popup--container {
+    display: flex;
+    background: none;
+    flex-direction: column;
+    min-width: 600px;
+    overflow: hidden;
+
+    .tabs--container {
+        display: grid;
+        gap: 2rem;
+        padding: 0 2rem;
+        border-radius: 8px;
+        background: #1D1D1D;
+        z-index: 999;
+        justify-items: center;
+        margin: 0 auto -25px auto;
+        grid-template-columns: 1fr 1fr;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        
+        button {
+            margin: 0;
+            opacity: 0.5;
+            color: white;
+            cursor: pointer;
+            padding: 1rem 2rem;
+            outline: none;
+            border: none;
+            background: none;
+            font-weight: bold;
+            font-family: "Inter", sans-serif;
+            transition: all 0.3s ease-in-out;
+            
+            &:hover {
+                color: var(--color-primary);
+                opacity: 1;
+                transition: all 0.3s ease-in-out;
+            }
+
+            &.active {
+                opacity: 1;
+                color: var(--color-primary);
+                transition: all 0.3s ease-in-out;
+            }
+        }
+    }
+    
+    .container {
+        padding: 16px;
+        position: relative;
+        border-radius: 12px;
+        background: #141414;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    
+        .icon-close {
+            position: absolute;
+            color: white;
+            font-size: 24px;
+            margin: 0;
+            top: 12px;
+            right: 12px;
+            font-family: "Inter", sans-serif;
+            transition: all 0.3s ease-in-out;
+    
+            &:hover {
+                opacity: 0.7;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+            }
+        }
+
+        .buttons--container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            margin-top: 20px;
+
+            .buttons--wrapper {
+                display: grid;
+                gap: 10px;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                padding-bottom: 20px;
+            }
+
+            button {
+                width: 100%;
+                border: none;
+                outline: none;
+                padding: 1.5rem;
+                color: white;
+                cursor: pointer;
+                font-weight: 500;
+                border-radius: 8px;
+                background: #1D1D1D;
+                font-family: "Inter", sans-serif;
+                transition: all 0.3s ease-in-out;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+                
+                &:hover {
+                    color: #1D1D1D;
+                    background: var(--color-primary);
+                    transition: all 0.3s ease-in-out;
+                }
+            }
+        }
+
+        .change--user-info-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 40px;
+
+            p {
+                margin: 0;
+                color: white;
+                font-size: 1rem;
+                font-weight: 600;
+                font-family: "Inter", sans-serif;
+            }
+
+            .grid {
+                display: grid;
+                gap: 10px;
+                margin: 20px 0;
+
+                .input--container {
+                    display: flex;
+                    flex-direction: column;
+
+                    p {
+                        margin: 0 0 10px 0;
+                        color: white;
+                        font-size: 0.8rem;
+                        font-weight: 400;
+                        font-family: "Inter", sans-serif;
+                    }
+                }
+            }
+        }
+    }
+
+    ::ng-deep .save--button {
+        margin: -12px auto 0 auto;
+
+        button {
+            min-width: 15vw;
+        }
+    }
+}

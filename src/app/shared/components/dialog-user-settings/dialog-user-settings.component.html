@@ -1,0 +1,46 @@
+<div class="popup--container">
+    <div class="tabs--container">
+        <button [class.active]="tabSelected === 'wallet'" (click)="tabSelected = 'wallet'">Carteira</button>
+        <button [class.active]="tabSelected === 'others'" (click)="tabSelected = 'others'">Outros</button>
+    </div>
+    <div class="container" [style.paddingBottom]="tabSelected === 'change_data' ? '32px' : '16px'">
+        <p class="icon-close" (click)="dialogRef.close()">x</p>
+        <div class="buttons--container" @fade *ngIf="tabSelected === 'wallet'">
+            <div class="buttons--wrapper">
+                <button>Adicionar saldo</button>
+                <button>Remover saldo</button>
+                <button>Adicionar Bônus</button>
+                <button>Remover Bônus</button>
+            </div>
+            <button>Reiniciar o financeiro do usuário</button>
+        </div>
+        <div class="buttons--container" @fade *ngIf="tabSelected === 'others'">
+            <div class="buttons--wrapper">
+                <button>Entrar na conta</button>
+                <button (click)="tabSelected = 'change_data'">Editar informações</button>
+                <button (click)="dialogRef.close({user, action: 'CHANGE_USER_TO_ADMIN'})">Tornar Administrador</button>
+                <button>Histórico de mudanças</button>
+            </div>
+        </div>
+        <div class="change--user-info-container" @fade *ngIf="tabSelected === 'change_data'">
+            <p>Alteração de dados</p>
+            <div class="grid" [style.gridTemplateColumns]="'1fr'">
+                <div class="input--container">
+                    <p>E-mail</p>
+                    <app-input [type]="'email'" [placeholder]="'exemplo@email.com'" [iconName]="'fa-solid fa-user'" [value]="user.email" (typing)="user.email = $event"></app-input>
+                </div>
+            </div>
+            <div class="grid" [style.gridTemplateColumns]="'1fr 1fr'">
+                <div class="input--container">
+                    <p>Documento</p>
+                    <app-input [type]="'text'" [placeholder]="'Digite seu CPF'" [iconName]="'fa-solid fa-id-card'" [mask]="'000.000.000-00'" [value]="user.document" (typing)="user.document = $event"></app-input>
+                </div>
+                <div class="input--container">
+                    <p>Telefone</p>
+                    <app-input class="input--space" [type]="'text'" [placeholder]="'Digite seu telefone'" [iconName]="'fa-solid fa-phone'" [mask]="'(00) 0 0000 0000'" [value]="user.phone" (typing)="user.phone = $event"></app-input>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-button class="save--button" @fade *ngIf="tabSelected === 'change_data'" [button]="{'text': 'Salvar', 'type': 'neon'}" [class]="'btn-small hover--effect'" (clicked)="dialogRef.close({ user, action: tabSelected })"></app-button>
+</div>

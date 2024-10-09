@@ -1,0 +1,29 @@
+<div class="dialog">
+  <div class="header">
+    <div class="title">Configuração do Site</div>
+    <div class="close" (click)="closeDialog()">&times;</div>
+  </div>
+
+  <div class="config">
+    <div class="input">
+      <p>Logo:</p>
+      <div>
+        <input type="text" [(ngModel)]="logo">
+        <img *ngIf="logo" [src]="logo" alt="Logo">
+      </div>
+    </div>
+
+    <div class="input">
+      <p>Favicon:</p>
+      <div>
+        <input type="text" [(ngModel)]="favicon">
+        <img *ngIf="favicon" [src]="favicon" alt="Favicon">
+      </div>
+    </div>
+  </div>
+
+  <div class="btn">
+    <button class="close" (click)="closeDialog()">Fechar</button>
+    <button class="save" (click)="saveChanges()">Salvar</button>
+  </div>
+</div>

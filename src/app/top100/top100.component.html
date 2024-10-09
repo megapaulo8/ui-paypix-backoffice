@@ -1,0 +1,59 @@
+<div class="header">
+  <div class="title">TOP100 | {{ categoryNames[selectedCategory] }}</div>
+  <div class="filter">
+    <div class="date-container">
+      <input
+        type="text"
+        class="date-box"
+        placeholder="De"
+        onfocus="this.type='date'"
+        onblur="if (!this.value) this.type='text'"
+        (change)="onStartDateSelected($event)"
+      />
+    </div>
+    <div class="date-container">
+      <input
+        type="text"
+        class="date-box"
+        placeholder="Até"
+        onfocus="this.type='date'"
+        onblur="if (!this.value) this.type='text'"
+        (change)="onEndDateSelected($event)"
+      />
+    </div>
+  </div>
+</div>
+
+<main>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <div class="filter">
+            <p>Escolha uma das categorias</p>
+            <div class="select-container">
+              <select class="select-box" (change)="onCategoryChange($event)">
+                <option
+                  *ngFor="let category of categoryNames | keyvalue"
+                  [value]="category.key"
+                  [selected]="category.key === selectedCategory"
+                >
+                  {{ category.value }}
+                </option>
+              </select>
+              <div class="icon-container">
+                <i class="fa-solid fa-filter"></i>
+              </div>
+            </div>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <app-users-top100
+        [selectedCategory]="selectedCategory"
+        [filteredTop100Data]="filteredTop100Data"
+      ></app-users-top100>
+    </tbody>
+  </table>
+</main>

@@ -1,0 +1,250 @@
+<!-- Dialog #1 -->
+<div class="popup-overlay" *ngIf="isOpen && currentPopupIndex === 0">
+  <div class="popup-container">
+    <div class="popup-header">
+      <h2>{{ editingCoupon.name }}</h2>
+      <button class="close-button" (click)="closePopup()">&times;</button>
+    </div>
+    <div class="popup-content">
+      <div class="header">
+        <div class="current">Identificação</div>
+        <div></div>
+        <div>Benefícios</div>
+        <div></div>
+        <div>Condições</div>
+      </div>
+
+      <main>
+        <div class="coupon-edit-two">
+          <div>
+            <label>Nome do cupom</label><br />
+            <input type="text" [(ngModel)]="editingCoupon.name" />
+          </div>
+
+          <div>
+            <label>Código do cupom</label><br />
+            <input type="text" [(ngModel)]="editingCoupon.code" />
+          </div>
+        </div>
+
+        <div class="coupon-edit-two">
+          <div>
+            <div class="radio-options">
+              <div class="text">Cupom é expirável?</div>
+              <div class="radio">
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="couponExpiration"
+                    (click)="verifyCheckbox()"
+                    [checked]="couponExpiration === true"
+                  />
+
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="coupon-edit" *ngIf="couponExpiration">
+              <label>Data de expiração</label>
+              <div class="box flex-evenly">
+                <div class="endDate">
+                  Até
+                  <input
+                    type="datetime-local"
+                    [value]="formatDateForInput(editingCoupon.expirationTime)"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="radio-options">
+              <div class="text">Quantidade limitada</div>
+              <div class="radio">
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="limitedQuantityChecked"
+                    (click)="toggleQuantitySection()"
+                  />
+
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="coupon-edit" *ngIf="limitedQuantityChecked">
+              <label>Quantidade</label>
+              <div class="box">
+                <div>
+                  <input
+                    type="number"
+                    min="0"
+                    [(ngModel)]="editingCoupon.maxUsage"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="coupon-edit">
+          <label>Descrição</label>
+
+          <div class="box">
+            <textarea
+              cols="30"
+              rows="10"
+              [value]="editingCoupon.description"
+            ></textarea>
+          </div>
+        </div>
+      </main>
+
+      <div class="footer">
+        <button (click)="closePopup()">Fechar</button>
+        <div class="pagination">
+          <button (click)="openNextPopup()">Próximo</button>
+        </div>
+        <button class="save" (click)="saveChanges()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dialog #2 -->
+<div class="popup-overlay" *ngIf="isOpen && currentPopupIndex === 1">
+  <div class="popup-container">
+    <div class="popup-header">
+      <h2>{{ editingCoupon.name }}</h2>
+      <button class="close-button" (click)="closePopup()">&times;</button>
+    </div>
+    <div class="popup-content">
+      <div class="header">
+        <div>Identificação</div>
+        <div></div>
+        <div class="current">Benefícios</div>
+        <div></div>
+        <div>Condições</div>
+      </div>
+
+      <main>
+        <div class="coupon-edit">
+          <label>Benefícios</label>
+
+          <div class="box">
+            <div class="select-container">
+              <select class="select-box">
+                <option value="add-balance">Adicionar saldo</option>
+                <option value="bonus-deposit">Bônus no depósito</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="coupon-edit">
+          <label>Tipo de saldo</label>
+
+          <div class="box">
+            <div class="select-container">
+              <select class="select-box">
+                <option value="real-balance">Saldo real</option>
+                <option value="bonus">Bônus</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="coupon-edit">
+          <label>Ação</label>
+
+          <div class="box">
+            <div class="select-container">
+              <select class="select-box">
+                <option value="value">Valor</option>
+                <option value="bonus">Bônus</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <div class="footer">
+        <button (click)="closePopup()">Fechar</button>
+        <div class="pagination">
+          <button (click)="openPreviousPopup()">Anterior</button>
+          <button (click)="openNextPopup()">Próximo</button>
+        </div>
+        <button class="save" (click)="saveChanges()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dialog #3 -->
+<div class="popup-overlay" *ngIf="isOpen && currentPopupIndex === 2">
+  <div class="popup-container">
+    <div class="popup-header">
+      <h2>{{ editingCoupon.name }}</h2>
+      <button class="close-button" (click)="closePopup()">&times;</button>
+    </div>
+    <div class="popup-content">
+      <div class="header">
+        <div>Identificação</div>
+        <div></div>
+        <div>Benefícios</div>
+        <div></div>
+        <div class="current">Condições</div>
+      </div>
+
+      <main>
+        <div class="coupon-edit">
+          <label>O usuário deve: </label>
+
+          <div class="box">
+            <div class="select-container">
+              <select class="select-box">
+                <option value="all-conditions">
+                  Cumprir todas as condições
+                </option>
+                <option value="no-conditions">Não cumprir condição</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="coupon-edit">
+          <label>Condições a serem cumpridas: </label>
+
+          <div class="box">
+            <div class="select-container">
+              <select class="select-box">
+                <option value="deposit-quantity">
+                  Quantidade de depósitos
+                </option>
+                <option value="withdraw-quantity">Quantidade de saques</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="coupon-edit">
+          <label>Valor / Quantidade: </label>
+
+          <div class="box">
+            <input type="number" min="1" [value]="1" />
+          </div>
+        </div>
+      </main>
+
+      <div class="footer">
+        <button (click)="closePopup()">Fechar</button>
+        <div class="pagination">
+          <button (click)="openPreviousPopup()">Anterior</button>
+        </div>
+        <button class="save" (click)="saveChanges()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>

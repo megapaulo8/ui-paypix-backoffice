@@ -1,0 +1,12 @@
+<div class="container">
+    <p class="title">Criando conta demo</p>
+    <app-input [type]="'email'" [placeholder]="'exemplo@email.com'" [value]="user.email" (typing)="user.email = $event"></app-input>
+    <div class="grid">
+        <app-input [type]="'text'" [placeholder]="'Nome de Usuário'" [value]="user.username" (typing)="user.username = $event"></app-input>
+        <app-input [type]="'password'" [placeholder]="'**********'" [value]="user.password!" (typing)="user.password = $event"></app-input>
+    </div>
+    <div class="buttons--container">
+        <button class="cancel" (click)="dialogRef.close()"><img src="https://bugdocasino.com/assets/cancel-icon.png" /></button>
+        <button class="confirm" (click)="createUserDemoAccount()"><img src="https://bugdocasino.com/assets/check-icon.png" /></button>
+    </div>
+</div>

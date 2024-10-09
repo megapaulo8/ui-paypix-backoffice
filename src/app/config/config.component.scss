@@ -1,0 +1,50 @@
+:host {
+  .header {
+    display: flex;
+    align-items: center;
+    color: #fff;
+
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: normal;
+      font-style: normal;
+      margin: 0;
+    }
+  }
+
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    color: #fff;
+    margin: 2.5rem 0;
+
+    .item {
+      cursor: pointer;
+    }
+
+    .item,
+    a {
+      font-size: 1.25rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #8e8e8e;
+      transition: 0.4s ease-in-out;
+    }
+    .item.active a {
+      color: var(--color-primary);
+    }
+    .item,
+    a:hover {
+      color: var(--color-primary);
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .menu {
+      justify-content: center;
+      gap: 1.5rem;
+    }
+  }
+}

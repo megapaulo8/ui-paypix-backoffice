@@ -1,0 +1,56 @@
+<div class="coupons">
+  <div class="coupon-container" *ngFor="let cupom of coupons">
+    <div class="coupon-info">
+      {{ cupom.usageCount }}
+      <span *ngIf="cupom.usageCount > 1">usados </span>
+      <span *ngIf="cupom.usageCount === 0 || cupom.usageCount === 1">
+        usado
+      </span>
+
+      <span *ngIf="cupom.maxUsage === 0">• Ilimitado </span>
+      <span
+        *ngIf="cupom.maxUsage !== 0 && cupom.expirationTime > getCurrentDate()"
+      >
+        • Restam {{ cupom.maxUsage - cupom.usageCount }}
+      </span>
+      <span *ngIf="cupom.expirationTime > getCurrentDate()">
+        • Vence em: {{ cupom.expirationTime | date : "dd/MM/yyyy" }}
+      </span>
+      <span
+        *ngIf="
+          cupom.expirationTime <= getCurrentDate() &&
+          cupom.expirationTime !== ''
+        "
+        >• VENCIDO</span
+      >
+      <span *ngIf="cupom.expirationTime === ''">• Não expira</span>
+    </div>
+    <div class="coupon-owner" (mouseenter)="toggleDropdown(cupom.id)">
+      <div class="coupon-title">{{ cupom.name }}</div>
+      <div class="coupon-subtitle">{{ cupom.adminName }}</div>
+    </div>
+    <div class="coupon-code" (click)="copyCouponCode(cupom.code)">
+      <p>{{ cupom.code }}</p>
+      <p>
+        <i class="fa-solid fa-ticket"></i>
+      </p>
+    </div>
+    <div
+      class="dropdown-content"
+      [ngClass]="{ show: openedCouponId === cupom.id }"
+    >
+      <div (click)="openEditPopup(cupom)">Editar</div>
+      <div>Histórico</div>
+      <div>Deletar</div>
+    </div>
+  </div>
+
+  <div class="new-coupon-container" (click)="openNewCouponPopup()">
+    <div class="plus">+</div>
+  </div>
+</div>
+
+<app-dialog-coupon-edit
+  [editingCoupon]="editingCoupon"
+  #popup
+></app-dialog-coupon-edit>

@@ -1,0 +1,42 @@
+.chart {
+  background: linear-gradient(170deg, transparent 50%, #272727 100%);
+  color: #fff;
+  position: relative;
+  padding: 20px 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 0;
+  width: 100%;
+  max-width: 30vw;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.15);
+
+  canvas {
+    width: 100%;
+  }
+
+  .overlay {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    opacity: 0.08;
+    background: #000;
+    z-index: -1;
+
+    &.left {
+      margin: -50% 0 0 60%;
+    }
+
+    &.right {
+      margin: 35% 0 0 -40%;
+    }
+  }
+  h3 {
+    font-size: 1.25rem;
+    margin: 0;
+    font-weight: 500;
+  }
+  p {
+    color: #8f8f8f;
+  }
+}

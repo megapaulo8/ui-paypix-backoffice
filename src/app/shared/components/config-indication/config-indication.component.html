@@ -1,0 +1,206 @@
+<div class="container">
+  <div class="content">
+    <div class="container-box">
+      <div class="title">Configure seus depósitos</div>
+      <hr />
+      <div class="box">
+        <p>Geral</p>
+        <div class="check">
+          <div class="text">Ativado</div>
+          <label class="switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="
+                siteData[0].indication_config.indication_reward_enabled
+              "
+            />
+            <span class="slider"></span>
+          </label>
+
+          <div class="text">Pagar na perda</div>
+          <label class="switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="siteData[0].indication_config.pay_on_loss"
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <hr />
+        <p>Valor mínimo para pagamento de comissão</p>
+        <input
+          type="text"
+          mask="separator.2"
+          thousandSeparator="."
+          decimalMarker=","
+          prefix="R$ "
+          [(ngModel)]="siteData[0].indication_config.comission_minimum_value"
+          [disabled]="!siteData[0].indication_config.indication_reward_enabled"
+        />
+      </div>
+    </div>
+    <div class="container-box">
+      <div class="title">Seção do Indicador</div>
+      <hr />
+      <div class="box">
+        <p>Recompensa do indicador</p>
+        <input
+          type="text"
+          mask="separator.2"
+          thousandSeparator="."
+          decimalMarker=","
+          prefix="R$ "
+          [(ngModel)]="siteData[0].indication_config.indicator_reward"
+          [disabled]="!siteData[0].indication_config.indication_reward_enabled"
+        />
+        <p>Tipo de recompensa do indicador</p>
+        <div class="select-menu" [class.active]="isOpenRewardIndicator">
+          <div class="select-btn" (click)="toggleMenuRewardIndicator()">
+            <span class="sBtn-text">
+              {{
+                rewardTypeIndicator
+                  ? (rewardTypeIndicator | titlecase)
+                  : "Selecione a opção"
+              }}
+            </span>
+            <i class="fa-solid fa-caret-down"></i>
+          </div>
+          <ul class="options">
+            <li class="option" (click)="rewardChangeIndicator('saldo')">
+              <span class="option-text"> Saldo </span>
+            </li>
+            <li class="option" (click)="rewardChangeIndicator('porcentagem')">
+              <span class="option-text"> Porcentagem </span>
+            </li>
+          </ul>
+        </div>
+        <p>Valor da recompensa do indicador</p>
+        <ng-container *ngIf="rewardTypeIndicator === 'saldo'">
+          <input
+            type="text"
+            mask="separator.2"
+            thousandSeparator="."
+            decimalMarker=","
+            prefix="R$ "
+            [(ngModel)]="siteData[0].indication_config.indicator_reward_value"
+            [disabled]="
+              !siteData[0].indication_config.indication_reward_enabled
+            "
+          />
+          <small>
+            Caso o indicado deposite R$ 50,00 o indicador receberá o valor
+            informado em saldo.
+          </small>
+        </ng-container>
+        <ng-container *ngIf="rewardTypeIndicator === 'porcentagem'">
+          <input
+            type="text"
+            mask="percent"
+            suffix="%"
+            [(ngModel)]="siteData[0].indication_config.indicator_reward_value"
+            [disabled]="
+              !siteData[0].indication_config.indication_reward_enabled
+            "
+          />
+          <small>
+            Caso o indicado deposite R$ 50,00 o indicador receberá a porcentagem
+            desse valor em saldo.
+          </small>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="container-box">
+      <div class="title">Seção do Indicado</div>
+      <hr />
+      <div class="box">
+        <p>Recompensa do indicado</p>
+        <div class="select-menu" [class.active]="isOpenRewardIndicated">
+          <div class="select-btn" (click)="toggleMenuRewardIndicated()">
+            <span class="sBtn-text">
+              {{
+                rewardTypeIndicatedType
+                  ? (rewardTypeIndicatedType | titlecase)
+                  : "Selecione a opção"
+              }}
+            </span>
+            <i class="fa-solid fa-caret-down"></i>
+          </div>
+          <ul class="options">
+            <li
+              class="option"
+              (click)="rewardChangeIndicatedType('valor fixo')"
+            >
+              <span class="option-text"> Valor fixo </span>
+            </li>
+            <li
+              class="option"
+              (click)="rewardChangeIndicatedType('valor percentual')"
+            >
+              <span class="option-text"> Valor percentual </span>
+            </li>
+          </ul>
+        </div>
+        <p>Tipo da recompensa do indicado</p>
+        <div class="select-menu" [class.active]="isOpenTypeRewardIndicated">
+          <div class="select-btn" (click)="toggleMenuTypeRewardIndicated()">
+            <span class="sBtn-text">
+              {{
+                rewardTypeIndicated
+                  ? (rewardTypeIndicated | titlecase)
+                  : "Selecione a opção"
+              }}
+            </span>
+            <i class="fa-solid fa-caret-down"></i>
+          </div>
+          <ul class="options">
+            <li class="option" (click)="rewardChangeTypeIndicated('saldo')">
+              <span class="option-text"> Saldo </span>
+            </li>
+            <li class="option" (click)="rewardChangeTypeIndicated('bonus')">
+              <span class="option-text"> Bônus </span>
+            </li>
+          </ul>
+        </div>
+        <p>Valor da recompensa do indicado</p>
+
+        <ng-container *ngIf="rewardTypeIndicatedType === 'valor fixo'">
+          <input
+            type="text"
+            mask="separator.2"
+            thousandSeparator="."
+            decimalMarker=","
+            prefix="R$ "
+            [(ngModel)]="siteData[0].indication_config.indicated_reward_value"
+            [disabled]="
+              !siteData[0].indication_config.indication_reward_enabled
+            "
+          />
+          <small
+            >Caso o indicado deposite R$ 50,00 o indicador receberá o valor
+            informado em saldo ou bônus.</small
+          >
+        </ng-container>
+        <ng-container *ngIf="rewardTypeIndicatedType === 'valor percentual'">
+          <input
+            type="text"
+            mask="percent"
+            suffix="%"
+            [(ngModel)]="siteData[0].indication_config.indicated_reward_value"
+            [disabled]="
+              !siteData[0].indication_config.indication_reward_enabled
+            "
+          />
+          <small
+            >Caso o indicado deposite R$ 50,00 o indicador receberá o percentual
+            informado em saldo ou bônus.</small
+          >
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="btn">
+    <button (click)="saveChanges()">Salvar</button>
+  </div>
+</div>
+<br />

@@ -1,0 +1,18 @@
+<div class="container">
+    <p class="title">Meus Exports</p>
+    <p class="icon-close" (click)="dialogRef.close()">x</p>
+    <div class="table">
+        <div class="grid">
+            <p>ID do arquivo</p>
+            <p>Status</p>
+            <p>Ação</p>
+        </div>
+    </div>
+    <div class="table">
+        <div class="grid" *ngFor="let userExport of exports">
+            <p>{{ userExport._id }}</p>
+            <p>{{ userExport.downloaded ? 'Baixado' : '' }}</p>
+            <p>{{ userExport.action.text }}</p>
+        </div>
+    </div>
+</div>

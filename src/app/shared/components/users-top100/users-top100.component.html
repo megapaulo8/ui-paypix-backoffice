@@ -1,0 +1,169 @@
+<!-- Apostas -->
+<ng-container *ngIf="selectedCategory === 'apostas'">
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <th>E-mail</th>
+        <th>Valor apostado</th>
+        <th>Total ganho</th>
+        <th>Ganho Líquido</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bets of filteredTop100Data">
+        <td class="column email">
+          <p>{{ bets.name }}</p>
+          <p>{{ bets.email }}</p>
+        </td>
+        <td class="column">
+          <p>{{ bets.betValue | currency : "BRL" }}</p>
+        </td>
+        <td class="column">
+          <p>{{ bets.totalWin | currency : "BRL" }}</p>
+        </td>
+        <td class="column">
+          <p>{{ bets.netWin | currency : "BRL" }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<!-- Depósitos -->
+<ng-container *ngIf="selectedCategory === 'depositos'">
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <th>E-mail</th>
+        <th>Depósitos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let deposits of filteredTop100Data">
+        <td class="column email2">
+          <p>{{ deposits.name }}</p>
+          <p>{{ deposits.email }}</p>
+        </td>
+        <td class="column">
+          <p>{{ deposits.depositValue | currency : "BRL" }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<!-- Saques -->
+<ng-container *ngIf="selectedCategory === 'saques'">
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <th>E-mail</th>
+        <th>Saques</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let withdrawals of filteredTop100Data">
+        <td class="column email2">
+          <p>{{ withdrawals.name }}</p>
+          <p>{{ withdrawals.email }}</p>
+        </td>
+        <td class="column">
+          <p>{{ withdrawals.withdrawalValue | currency : "BRL" }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<!-- Perdas em apostas -->
+<ng-container *ngIf="selectedCategory === 'perdas-apostas'">
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <th>E-mail</th>
+        <th>Valor apostado</th>
+        <th>Total perdido</th>
+        <th>Perda Líquida</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let losses of filteredTop100Data">
+        <td class="column email">
+          <p>{{ losses.name }}</p>
+          <p>{{ losses.email }}</p>
+        </td>
+        <td class="column">
+          <p>{{ losses.betValue | currency : "BRL" }}</p>
+        </td>
+        <td class="column">
+          <p>{{ losses.totalLosses | currency : "BRL" }}</p>
+        </td>
+        <td class="column">
+          <p>{{ losses.totalLosses | currency : "BRL" }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<!-- Ganhos em apostas -->
+<ng-container *ngIf="selectedCategory === 'ganhos-apostas'">
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <th>E-mail</th>
+        <th>Valor apostado</th>
+        <th>Total ganho</th>
+        <th>Ganho Líquido</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let wins of filteredTop100Data">
+        <td class="column email">
+          <p>{{ wins.name }}</p>
+          <p>{{ wins.email }}</p>
+        </td>
+        <td class="column">
+          <p>{{ wins.betValue | currency : "BRL" }}</p>
+        </td>
+        <td class="column">
+          <p>{{ wins.totalWin | currency : "BRL" }}</p>
+        </td>
+        <td class="column">
+          <p>{{ wins.netWin | currency : "BRL" }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<!-- Indicadores -->
+<ng-container *ngIf="selectedCategory === 'indicadores'">
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <th>E-mail</th>
+        <th>Valor em indicação</th>
+        <th>Quantidade indicada</th>
+        <th>Origem indicação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let referrals of filteredTop100Data">
+        <td class="column email">
+          <p>{{ referrals.name }}</p>
+          <p>{{ referrals.email }}</p>
+        </td>
+        <td class="column">
+          <p>{{ referrals.referralEarnings | currency : "BRL" }}</p>
+        </td>
+        <td class="column">
+          <p>{{ referrals.referredQuantity }}</p>
+        </td>
+        <td class="column">
+          <p>{{ referrals.referralSource }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>

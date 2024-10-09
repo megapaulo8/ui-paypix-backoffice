@@ -1,0 +1,114 @@
+:host {
+    table {
+        width: 100%;
+        
+        thead {
+            tr {
+                background: #171717;
+                
+                th {
+                    color: #FFF;
+                    font-family: Inter;
+                    font-size: 1rem;
+                    padding: 31px 0;
+                    font-style: normal;
+                    text-align: left;
+                    font-weight: 500;
+                    line-height: normal;
+                    border-bottom: solid #444444 2px;
+                    
+                    &:first-child {
+                        border-radius: 30px 0 0 0;
+                        padding-left: 2rem;
+                    }
+
+                    &:last-child {
+                        border-radius: 0 30px 0 0;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            background: #2E2E2E;
+            border-radius: 1px;
+
+            tr {
+                
+                td {
+                    border-bottom: 1px solid #000000;
+                    padding: 22px 1rem 22px 0;
+
+                    .row {
+                        display: flex;
+                        padding-left: 1rem;
+                        flex-direction: row;
+                        align-items: center;
+
+                        .circle--dot {
+                            width: 0.8rem;
+                            height: 0.8rem;
+                            border-radius: 50%;
+                            background: white;
+                            margin-right: 0.6rem;
+                        }
+
+                        p {
+                            margin: 0;
+                            color: white;
+                            font-size: 0.8rem;
+                            font-weight: 500;
+                        }
+                    }
+
+                    &.column {
+                        p {
+                            margin: 0;
+                            color: white;
+                            font-size: 1rem;
+                            font-weight: 500;
+                            overflow: hidden;
+                            max-width: 12rem;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+
+                            &:first-child {
+                                font-size: 1rem;
+                                font-weight: bold;
+                            }
+
+                            &:last-child {
+                                margin-top: 4px;
+                                font-size: 0.8rem;
+                            }
+                        }
+                    }
+
+                    &.account--button {
+                        max-width: 6.6rem;
+
+                        app-default-button {
+                            pointer-events: none;
+                        }
+                    }
+
+                    &:first-child {
+                        padding-left: 2rem;
+                    }
+
+                    &:last-child {
+                        padding-right: 2rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        background: #2E2E2E;
+        justify-content: flex-end;
+    }
+}

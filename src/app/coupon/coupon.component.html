@@ -1,0 +1,33 @@
+<div class="header">
+  <div class="title">Gerencie seus cupons</div>
+</div>
+
+<div class="container">
+  <div class="header">
+    <div class="title">Configure e gerencie seus cupons</div>
+    <div class="save-button">Salvar</div>
+  </div>
+
+  <main>
+    <div class="radio-options">
+      <div class="text">Ative todos os seus cupons</div>
+      <div class="radio">
+        <label class="switch">
+          <input type="checkbox" checked />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <div class="radio-options">
+      <div class="text">Desative todos os seus cupons</div>
+      <div class="radio">
+        <label class="switch">
+          <input type="checkbox" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+  </main>
+</div>
+
+<app-coupon-card [coupons]="coupons"></app-coupon-card>

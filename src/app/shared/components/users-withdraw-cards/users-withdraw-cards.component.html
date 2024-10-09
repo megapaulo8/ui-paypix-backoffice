@@ -1,0 +1,143 @@
+<div class="card-container">
+  <!-- CARD JOGADORES -->
+  <div class="card" *ngIf="playersValues !== 0">
+    <div class="inner-card">
+      <div class="overlay left"></div>
+      <div class="overlay right"></div>
+
+      <div class="icon">
+        <img src="https://bugdocasino.com/assets/icon-affiliate.png" />
+      </div>
+      <header>
+        <div class="titulo">Jogadores</div>
+        <div class="valor">{{ playersValues | currency : "BRL" }}</div>
+        <div class="subtitulo">
+          {{ getSubtitle() }}
+        </div>
+      </header>
+
+      <div class="separate"></div>
+
+      <div class="detalhes">
+        <div class="item">
+          <p>Quantidade</p>
+          <p>{{ playersQuantity }}</p>
+        </div>
+        <div class="item">
+          <p>Ticket Médio</p>
+          <p>
+            {{
+              getAverageTicket(playersValues, playersQuantity)
+                | currency : "BRL"
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CARD AFILIADOS -->
+  <div class="card" *ngIf="affiliatesValues !== 0">
+    <div class="inner-card">
+      <div class="overlay left"></div>
+      <div class="overlay right"></div>
+
+      <div class="icon">
+        <img src="https://bugdocasino.com/assets/icon-affiliate.png" />
+      </div>
+      <header>
+        <div class="titulo">Afiliados</div>
+        <div class="valor">{{ affiliatesValues | currency : "BRL" }}</div>
+        <div class="subtitulo">
+          {{ getSubtitle() }}
+        </div>
+      </header>
+
+      <div class="separate"></div>
+
+      <div class="detalhes">
+        <div class="item">
+          <p>Quantidade</p>
+          <p>{{ affiliatesQuantity }}</p>
+        </div>
+        <div class="item">
+          <p>Ticket Médio</p>
+          <p>
+            {{
+              getAverageTicket(affiliatesValues, affiliatesQuantity)
+                | currency : "BRL"
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CARD SUB AFILIADOS -->
+  <div class="card" *ngIf="subAffiliatesValues !== 0">
+    <div class="inner-card">
+      <div class="overlay left"></div>
+      <div class="overlay right"></div>
+
+      <div class="icon">
+        <img src="https://bugdocasino.com/assets/icon-affiliate.png" />
+      </div>
+      <header>
+        <div class="titulo">Sub Afiliados</div>
+        <div class="valor">{{ subAffiliatesValues | currency : "BRL" }}</div>
+        <div class="subtitulo">
+          {{ getSubtitle() }}
+        </div>
+      </header>
+
+      <div class="separate"></div>
+
+      <div class="detalhes">
+        <div class="item">
+          <p>Quantidade</p>
+          <p>{{ subAffiliatesQuantity }}</p>
+        </div>
+        <div class="item">
+          <p>Ticket Médio</p>
+          <p>
+            {{
+              getAverageTicket(subAffiliatesValues, subAffiliatesQuantity)
+                | currency : "BRL"
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CARD TODOS -->
+  <div class="card" *ngIf="allValues !== 0">
+    <div class="inner-card">
+      <div class="overlay left"></div>
+      <div class="overlay right"></div>
+
+      <div class="icon">
+        <img src="https://bugdocasino.com/assets/icon-affiliate.png" />
+      </div>
+      <header>
+        <div class="titulo">Todos</div>
+        <div class="valor">{{ allValues | currency : "BRL" }}</div>
+        <div class="subtitulo">{{ getSubtitle() }}</div>
+      </header>
+
+      <div class="separate"></div>
+
+      <div class="detalhes">
+        <div class="item">
+          <p>Quantidade</p>
+          <p>{{ getAllQuantity() }}</p>
+        </div>
+        <div class="item">
+          <p>Ticket Médio</p>
+          <p>
+            {{
+              getAverageTicket(allValues, getAllQuantity()) | currency : "BRL"
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

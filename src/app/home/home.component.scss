@@ -1,0 +1,20 @@
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: normal;
+    font-style: normal;
+  }
+}
+
+.home-charts{
+  display: flex;
+  color: #fff;
+  margin-bottom: 35px;
+  gap: 15px;
+}

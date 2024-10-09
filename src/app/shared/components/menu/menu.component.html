@@ -1,0 +1,23 @@
+<div class="container">
+    <img [src]="menu.logo" alt="Logo Casino" class="logo">
+    <div class="menu--path-container">
+        <button [class.current--path-button]="currentPath.includes(button.pathTo!)" mat-button class="menu--button hover--effect" *ngFor="let button of menu.buttons" (click)="pathTo.emit(button.pathTo)">
+            <i [class]="button.iconName"></i>
+            <p>{{ button.text }}</p>
+        </button>
+    </div>
+    <hr>
+    <div class="user--info">
+        <div class="user--abreviation">
+            <p>{{ userInfo.username.slice(0, 3).toUpperCase() }}</p>
+        </div>
+        <div class="user--info-data">
+            <p class="title">{{ userInfo.username }}</p>
+            <p class="description">{{ userInfo.email }}</p>
+        </div>
+    </div>
+    <button mat-button class="menu--button hover--effect" (click)="clickUserLogout.emit()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <p>Sair</p>
+    </button>
+</div>

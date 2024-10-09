@@ -1,0 +1,228 @@
+<div
+  class="select-menu"
+  [class.active]="accountTypeOpen"
+  (clickOutside)="accountTypeOpen = false"
+>
+  <div
+    class="select-btn"
+    (click)="accountTypeOpen = !accountTypeOpen"
+    style="background-color: #171717"
+  >
+    <span class="sBtn-text">{{
+      accountType ? (accountType | titlecase) : "Selecione a opção"
+    }}</span>
+    <i class="fa-solid fa-caret-down"></i>
+  </div>
+  <ul class="options">
+    <li class="option" (click)="selectAccountType('jogadores')">
+      <span class="option-text">Jogadores</span>
+    </li>
+    <li class="option" (click)="selectAccountType('afiliado')">
+      <span class="option-text">Afiliados</span>
+    </li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="check">
+    <div class="text">Automáticos</div>
+
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="autoWithdrawConfig" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <hr />
+
+  <div class="container-box">
+    <div class="content">
+      <p>Limite total por dia (todos os saques)</p>
+      <input
+        type="text"
+        placeholder="R$ 0,00"
+        [(ngModel)]="siteData[0].withdraw_config.daily_total_limit"
+        mask="separator.2"
+        thousandSeparator="."
+        decimalMarker=","
+        prefix="R$ "
+      />
+
+      <p>Limites por usuário por dia</p>
+      <input
+        type="text"
+        placeholder="R$ 0,00"
+        [(ngModel)]="siteData[0].withdraw_config.user_daily_limit"
+        mask="separator.2"
+        thousandSeparator="."
+        decimalMarker=","
+        prefix="R$ "
+      />
+
+      <p>Limite por saque</p>
+      <input
+        type="text"
+        placeholder="R$ 0,00"
+        [(ngModel)]="siteData[0].withdraw_config.withdraw_limit"
+        mask="separator.2"
+        thousandSeparator="."
+        decimalMarker=","
+        prefix="R$ "
+      />
+
+      <div class="check pad-vert-2">
+        <div class="text">Pegar em horários</div>
+
+        <label class="switch">
+          <input
+            type="checkbox"
+            [(ngModel)]="siteData[0].withdraw_config.payment_hours_enabled"
+          />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <p class="pad-vert-1">Horário para o pagamento</p>
+
+      <p>Início</p>
+      <input
+        type="time"
+        [(ngModel)]="siteData[0].withdraw_config.payment_hours_start"
+        [disabled]="!siteData[0].withdraw_config.payment_hours_enabled"
+      />
+
+      <p>Fim</p>
+      <input
+        type="time"
+        [(ngModel)]="siteData[0].withdraw_config.payment_hours_end"
+        [disabled]="!siteData[0].withdraw_config.payment_hours_enabled"
+      />
+    </div>
+    <div class="content">
+      <p>Limite para saques diários</p>
+      <input
+        type="text"
+        placeholder="R$ 0,00"
+        [(ngModel)]="siteData[0].withdraw_config.daily_withdraw_limit"
+        mask="separator.2"
+        thousandSeparator="."
+        decimalMarker=","
+        prefix="R$ "
+      />
+
+      <div class="flex-2">
+        <div>
+          <p>Valor mínimo</p>
+          <input
+            type="text"
+            placeholder="R$ 0,00"
+            [(ngModel)]="siteData[0].withdraw_config.min_withdraw_amount"
+            mask="separator.2"
+            thousandSeparator="."
+            decimalMarker=","
+            prefix="R$ "
+          />
+        </div>
+        <div>
+          <p>Valor máximo</p>
+          <input
+            type="text"
+            placeholder="R$ 0,00"
+            [(ngModel)]="siteData[0].withdraw_config.max_withdraw_amount"
+            mask="separator.2"
+            thousandSeparator="."
+            decimalMarker=","
+            prefix="R$ "
+          />
+        </div>
+      </div>
+
+      <div class="pad-vert-1">
+        <p>Tipo da taxa de saque</p>
+        <br />
+
+        <div class="select-menu" [class.active]="isOpen">
+          <div class="select-btn" (click)="toggleMenu()">
+            <span class="sBtn-text">{{
+              selectedOption
+                ? (selectedOption | titlecase)
+                : "Selecione a opção"
+            }}</span>
+            <i class="fa-solid fa-caret-down"></i>
+          </div>
+          <ul class="options">
+            <li class="option" (click)="selectOption('valor')">
+              <span class="option-text">Valor</span>
+            </li>
+            <li class="option" (click)="selectOption('porcentagem')">
+              <span class="option-text">Porcentagem</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <ng-container *ngIf="selectedOption === 'valor'">
+        <p>Valor da taxa de saque</p>
+        <input
+          type="text"
+          placeholder="R$ 0,00"
+          [(ngModel)]="siteData[0].withdraw_config.withdraw_fee_amount"
+          mask="separator.2"
+          thousandSeparator="."
+          decimalMarker=","
+          prefix="R$ "
+        />
+      </ng-container>
+      <ng-container *ngIf="selectedOption === 'porcentagem'">
+        <p>Porcentagem da taxa de saque</p>
+        <input
+          type="text"
+          placeholder="0%"
+          [(ngModel)]="siteData[0].withdraw_config.withdraw_fee_amount"
+          mask="percent"
+          suffix="%"
+        />
+      </ng-container>
+
+      <hr />
+
+      <div class="pad-vert-1">
+        <p>Rollover</p>
+
+        <div class="check">
+          <div class="text">
+            {{
+              siteData[0].withdraw_config.rollover_multiplier_enabled
+                ? "Ativado"
+                : "Desativado"
+            }}
+          </div>
+
+          <label class="switch">
+            <input
+              type="checkbox"
+              [(ngModel)]="
+                siteData[0].withdraw_config.rollover_multiplier_enabled
+              "
+            />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      <p>Multiplicador do rollover</p>
+      <input
+        type="text"
+        [disabled]="!siteData[0].withdraw_config.rollover_multiplier_enabled"
+        [(ngModel)]="siteData[0].withdraw_config.rollover_multiplier_value"
+      />
+      <p>
+        Se o usuário depositar R$100, ele precisará apostar R$ 200,00 pra sacar
+        R$ 100,00
+      </p>
+    </div>
+  </div>
+
+  <div class="btn">
+    <button (click)="saveChanges()">Salvar</button>
+  </div>
+</div>
+<br />

@@ -1,0 +1,14 @@
+<div class="header">
+    <p class="title">Todos os usuários</p>
+</div>
+<div class="container">
+    <div class="filter--container">
+        <app-search-bar *ngIf="filter" [value]="filter.textSearch" [placeholder]="'Pesquisar ' + filter.keyTypeAccount.text" (searchByText)="searchFilterByText($event)"></app-search-bar>
+        <app-select-option *ngIf="filterOptions.typeKeyOptions" [select]="filterOptions.typeKeyOptions" [selectedOption]="filter.keyTypeAccount" (clickToSelectOption)="selectedKeyTypeAccount($event)"></app-select-option>
+        <app-select-option class="button--type-account" *ngIf="filterOptions.typeAccountOptions" [select]="filterOptions.typeAccountOptions" [selectedOption]="filter.typeAccount" (clickToSelectOption)="selectedTypeAccount($event)"></app-select-option>
+        <app-default-button [text]="'Criar conta demo'" (clicked)="openCreateDemoAccountPopup()"></app-default-button>
+        <app-default-button [text]="'Ver Exportados'" [iconUrl]="'https://bugdocasino.com/assets/arrow-down-icon.png'" (clicked)="openUsersExportedPopup()"></app-default-button>
+        <button class="export--users hover--effect" (click)="openExportUsersPopup()"><img src="https://bugdocasino.com/assets/download-icon.png" /></button>
+    </div>
+    <app-users-table *ngIf="columnUsersTable.items && columnUsersTable.items.length > 0" [headerTable]="headerTable" [filter]="filter" [columnUsersTable]="columnUsersTable" (filterByHeaderColumn)="selectedFilterBy($event)" (changePage)="changeFilterPage($event)" (clickedEventDefaultButton)="clickedUserEventTable($event)"></app-users-table>
+</div>

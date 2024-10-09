@@ -1,0 +1,15 @@
+<div class="container">
+    <img src="./../../assets/logo.webp" alt="Logo PayPIX" class="logo">
+    <div class="card">
+        <p class="title">Acesse a plataforma</p>
+        <div class="input--container">
+            <p class="title">Seu email:</p>
+            <app-input [type]="'email'" [placeholder]="'exemplo@email.com'" [iconName]="'fa-solid fa-user'" [value]="formLoginUser.email" (typing)="formLoginUser.email = $event"></app-input>
+        </div>
+        <div class="input--container">
+            <p class="title">Sua senha:</p>
+            <app-input [type]="'password'" [placeholder]="'******'" [iconName]="'fa-solid fa-lock'" [value]="formLoginUser.password" (typing)="formLoginUser.password = $event"></app-input>
+        </div>
+        <app-button [button]="{'text': 'Entrar', 'type': 'neon'}" [class]="'btn-small btn-full-width hover--effect'" (clicked)="loginUser(formLoginUser)"></app-button>
+    </div>
+</div>

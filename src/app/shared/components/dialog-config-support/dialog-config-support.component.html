@@ -1,0 +1,18 @@
+<div class="dialog">
+  <div class="header">
+    <div class="title">Configuração</div>
+    <div class="close" (click)="closeDialog()">&times;</div>
+  </div>
+  <div class="content">
+    <p>Insira o ID do serviço</p>
+    <textarea [(ngModel)]="supportData.support_service_id"></textarea>
+    <small>
+      Você pode encontrar o ID do serviço na documentação ou nas instruções de
+      uso. Geralmente, consiste em uma sequência aleatória de letras e números.
+    </small>
+    <div class="btn">
+      <button class="close" (click)="closeDialog()">Fechar</button>
+      <button class="save" (click)="saveDialog()">Salvar</button>
+    </div>
+  </div>
+</div>

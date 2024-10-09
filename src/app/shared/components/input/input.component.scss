@@ -1,0 +1,66 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    position: relative;
+
+    input {
+        z-index: 1;
+        height: 42px;
+        background-color: transparent;
+        backdrop-filter: blur(5px);
+        color: white;
+        border: 1px solid #2E2E2E;
+        border-radius: 8px;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0;
+        font-weight: 400;
+        padding-left: 44px;
+        padding-right: 16px;
+        display: flex;
+        position: relative;
+        width: 100%;
+        font-size: 14px;
+        line-height: 1.42857;
+        font-family: "Inter", sans-serif;
+        transition: all ease-in-out 0.3s;
+
+        &:focus {
+            outline: none !important;
+            border: 1px solid var(--color-primary);
+            transition: all ease-in-out 0.3s;
+        }
+
+        &:-webkit-autofill {
+            transition: background-color 0s 600000s, color 0s 600000s !important;
+        }
+
+        &:-webkit-autofill:focus {
+            transition: background-color 0s 600000s, color 0s 600000s !important;
+        }
+    }
+
+
+    i {
+        z-index: 2;
+        height: 100%;
+        color: #ffffff;
+        justify-content: center;
+        align-items: center;
+        margin-left: 16px;
+        margin-right: 16px;
+        font-size: 14px;
+        display: flex;
+        position: absolute;
+        top: 0%;
+        bottom: auto;
+        left: 0%;
+        right: auto;
+    }
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+    background: transparent !important;
+}

@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="header">
+    <div class="title">Configure seus depósitos</div>
+    <div class="check">
+      <div>Desativar limite máximo</div>
+      <div>
+        <label class="switch">
+          <input type="checkbox" [(ngModel)]="disableMaxLimit" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="deposit">
+    <div>
+      <p>Valor mínimo</p>
+      <input
+        type="text"
+        [(ngModel)]="minValue"
+        mask="separator.2"
+        thousandSeparator="."
+        decimalMarker=","
+        prefix="R$ "
+      />
+    </div>
+    <div>
+      <p>Valor máximo</p>
+      <input
+        type="text"
+        [(ngModel)]="maxValue"
+        [disabled]="disableMaxLimit"
+        mask="separator.2"
+        thousandSeparator="."
+        decimalMarker=","
+        prefix="R$ "
+      />
+    </div>
+  </div>
+</div>
+<div class="btn">
+  <button class="save" (click)="saveChanges()">Salvar</button>
+</div>
+
+<div class="overlay" *ngIf="showSuccessPopup"></div>
+<div class="success-popup" *ngIf="showSuccessPopup">
+  <div class="popup-container">
+    <div class="title">Valor de depósito alterado.</div>
+    <ng-container *ngIf="minValue !== 0">
+      <p>
+        O seu valor mínimo de depósito agora é de
+        {{ minValue | currency : "BRL" }}
+      </p>
+    </ng-container>
+    <ng-container *ngIf="maxValue !== 0 && disableMaxLimit === false">
+      <p>
+        O seu valor máximo de depósito agora é de
+        {{ maxValue | currency : "BRL" }}
+      </p>
+    </ng-container>
+    <ng-container *ngIf="disableMaxLimit === true">
+      <p>Não há limite de valor máximo para depósitos.</p>
+    </ng-container>
+    <button class="close" (click)="btnClose()">Fechar</button>
+  </div>
+</div>

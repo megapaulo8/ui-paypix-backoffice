@@ -1,0 +1,103 @@
+:host {
+
+  table {
+    width: 100%;
+  
+    thead {
+      tr {
+        background: #171717;
+  
+        th {
+          color: #fff;
+          font-family: Inter;
+          font-size: 1rem;
+          padding: 10px 30px;
+          font-style: normal;
+          text-align: left;
+          font-weight: 400;
+          line-height: normal;
+          border-bottom: solid #444444 2px;
+        }
+      }
+    }
+  
+    tbody {
+      background: #2e2e2e;
+      border-radius: 1px;
+  
+      tr {
+        td {
+          border-bottom: 1px solid #000000;
+          padding: 15px 30px;
+  
+          .row {
+            display: flex;
+            padding-left: 1rem;
+            flex-direction: row;
+            align-items: center;
+  
+            .circle--dot {
+              width: 0.8rem;
+              height: 0.8rem;
+              border-radius: 50%;
+              background: white;
+              margin-right: 0.6rem;
+            }
+  
+            p {
+              margin: 0;
+              color: white;
+              font-size: 0.8rem;
+              font-weight: 500;
+            }
+          }
+  
+          &.column {
+            p {
+              margin: 0;
+              color: white;
+              font-size: 1rem;
+              font-weight: 500;
+              overflow: hidden;
+              max-width: 12rem;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+  
+              &:first-child {
+                font-size: 1rem;
+                font-weight: bold;
+              }
+  
+              &:last-child {
+                margin-top: 4px;
+                font-size: 0.8rem;
+              }
+            }
+          }
+          &.email {
+            width: 40%;
+          }
+          &.email2 {
+            width: 70%;
+          }
+  
+          &.account--button {
+            max-width: 6.6rem;
+  
+            app-default-button {
+              pointer-events: none;
+            }
+          }
+  
+          &:first-child {
+            padding-left: 2rem;
+          }
+  
+          &:last-child {
+            padding-right: 2rem;
+          }
+        }
+      }
+    }
+  }
+}

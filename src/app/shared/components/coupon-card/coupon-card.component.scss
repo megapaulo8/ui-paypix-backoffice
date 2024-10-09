@@ -1,0 +1,117 @@
+:host {
+  .coupons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, auto));
+    gap: 15px;
+    font-size: 1rem;
+    color: #fff;
+    position: relative;
+    padding: 0 0 10rem 0;
+
+    .coupon-container {
+      background-color: #181818;
+      padding: 1.5rem;
+      border-radius: 10px;
+
+      .coupon-info {
+        font-size: 0.875rem;
+        color: #8c8c8c;
+        text-align: center;
+        font-weight: 600;
+        padding: 0 0 1rem 0;
+      }
+      .coupon-owner {
+        margin: 1rem 0 1.35rem 0;
+        cursor: pointer;
+
+        .coupon-title {
+          font-size: 1.25rem;
+          color: #fff;
+          font-weight: 600;
+          text-transform: uppercase;
+          margin: 10px 0 0 0;
+        }
+        .coupon-subtitle {
+          font-size: 0.875rem;
+          color: #8c8c8c;
+          font-weight: 700;
+          margin: 0 0 10px 0;
+        }
+      }
+      .coupon-code {
+        padding: 1rem 1.5rem;
+        border: 1px dashed #777;
+        font-weight: 700;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: ease-in-out 0.25s;
+
+        p {
+          margin: 0;
+        }
+        i {
+          font-size: 2rem;
+        }
+
+        &:active {
+          background-color: var(--color-primary);
+          border: 3px dashed transparent;
+        }
+      }
+    }
+  }
+
+  .new-coupon-container {
+    border: 1px dashed #8c8c8c;
+    border-radius: 10px;
+    padding: 1rem;
+    color: #8c8c8c;
+    min-height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    .plus {
+      font-size: 2.5rem;
+      font-weight: 100;
+    }
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #171717;
+    border-radius: 10px;
+    color: #fff;
+    min-width: 160px;
+    z-index: 1;
+  }
+
+  .dropdown-content div {
+    color: #fff;
+    padding: 1rem 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: block;
+    border-radius: 10px;
+    transition: all ease-in-out 0.3s;
+    cursor: pointer;
+  }
+
+  .dropdown-content div:hover {
+    border-radius: 10px;
+    color: #000;
+    background-color: var(--color-primary);
+  }
+
+  .show {
+    display: block;
+    margin: 0.75rem 0 0 6rem;
+    border: 3px solid #282828;
+  }
+}

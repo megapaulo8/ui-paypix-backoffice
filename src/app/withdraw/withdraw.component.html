@@ -1,0 +1,116 @@
+<div class="header">
+  <p class="title">Listagem de saques</p>
+  <div class="filter">
+    <div class="date-container">
+      <input
+        type="text"
+        class="date-box"
+        placeholder="De"
+        onfocus="this.type='date'"
+        onblur="if (!this.value) this.type='text'"
+        (change)="onStartDateSelected($event)"
+      />
+    </div>
+    <div class="date-container">
+      <input
+        type="text"
+        class="date-box"
+        placeholder="Até"
+        onfocus="this.type='date'"
+        onblur="if (!this.value) this.type='text'"
+        (change)="onEndDateSelected($event)"
+      />
+    </div>
+    <div class="select-container">
+      <select class="select-box" (change)="onAccountType($event)">
+        <option selected>Tipo de conta</option>
+        <option
+          *ngFor="let category of typeAccount | keyvalue"
+          [value]="category.key"
+        >
+          {{ category.value }}
+        </option>
+      </select>
+      <div class="icon-container">
+        <i class="fa-solid fa-filter"></i>
+      </div>
+    </div>
+    <div class="select-container">
+      <select class="select-box" (change)="onStatusChange($event)">
+        <option selected>Status</option>
+        <option
+          *ngFor="let category of statusType | keyvalue"
+          [value]="category.key"
+        >
+          {{ category.value }}
+        </option>
+      </select>
+      <div class="icon-container">
+        <i class="fa-solid fa-filter"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<app-users-withdraw-cards
+  [filteredWithdraw]="withdraw"
+  [affiliatesValues]="affiliatesValues"
+  [playersValues]="playersValues"
+  [subAffiliatesValues]="subAffiliatesValues"
+
+  [affiliatesQuantity]="affiliatesQuantity"
+  [subAffiliatesQuantity]="subAffiliatesQuantity"
+  [playersQuantity]="playersQuantity"
+  
+  [allValues]="allValues"
+  [startDate]="startDate"
+  [endDate]="endDate"
+></app-users-withdraw-cards>
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <div class="filter">
+            <div class="title">Listagem de saques</div>
+            <div class="search">
+              <div class="select-container">
+                <select class="select-box" (change)="onSearchChange($event)">
+                  <option
+                    *ngFor="let category of searchCategory | keyvalue"
+                    [value]="category.key"
+                    [selected]="category.key === selectedSearch"
+                  >
+                    {{ category.value }}
+                  </option>
+                </select>
+                <div class="icon-container">
+                  <i class="fa-solid fa-filter"></i>
+                </div>
+              </div>
+              <div class="input-search">
+                <input
+                  type="text"
+                  class="search-box"
+                  placeholder="Pesquisar &quot;{{
+                    searchCategory[selectedSearch]
+                  }}&quot;"
+                  (input)="onSearchInput($event)"
+                />
+                <div class="icon-container">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <app-users-withdraw
+        [filteredWithdraw]="withdraw"
+        [filter]="filter"
+        (toggleExpandChange)="onToggleExpandChange($event)"
+      ></app-users-withdraw>
+    </tbody>
+  </table>
+</div>

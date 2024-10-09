@@ -1,0 +1,47 @@
+<div class="header">
+  <p class="title">Informações de Depósitos</p>
+
+  <div class="filters">
+    <app-card-filter-button
+      (dateRangeSelected)="
+        handleDateRangeSelected($event.startDate, $event.endDate)
+      "
+    ></app-card-filter-button>
+  </div>
+</div>
+<div class="container">
+  <app-deposit-card
+    [volumeDeposits]="totalVolume"
+    [quantityDeposits]="quantityOfDeposits"
+    [averageTicket]="averageTicket"
+    [lastDate]="lastDate"
+    [startDate]="startDate ? startDate.toISOString() : undefined"
+    [endDate]="endDate ? endDate.toISOString() : undefined"
+  ></app-deposit-card>
+  <div class="filter--container">
+    <app-search-bar
+      *ngIf="filter"
+      [value]="filter.textSearch"
+      [placeholder]="'Pesquisar e-mail'"
+      (searchByText)="searchFilterByText($event)"
+    ></app-search-bar>
+
+    <div class="select-container">
+      <select class="select-box" (change)="applyStatusFilter($event)">
+        <option value="todos">Todos</option>
+        <option value="pagos">Pagos</option>
+        <option value="naopagos">Não pagos</option>
+      </select>
+      <div class="icon-container">
+        <i class="fa-solid fa-filter"></i>
+      </div>
+    </div>
+  </div>
+  <app-users-deposit
+    [headerTable]="headerTable"
+    [filter]="filter"
+    (filterByHeaderColumn)="selectedFilterBy($event)"
+    [depositos]="filteredDeposits"
+    (changePage)="changeFilterPage($event)"
+  ></app-users-deposit>
+</div>
